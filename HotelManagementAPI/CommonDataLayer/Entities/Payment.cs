@@ -5,35 +5,32 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace CommonDataLayer.Entities
 {
     [Table("payments")]
-    public class Payment
+    public class Payment : BaseModel
     {
         [Key]
-        [Column("id")]
-        public int Id { get; set; }
+        [Column("PaymentId")]
+        public int PaymentId { get; set; }
 
-        [Column("booking_id")]
-        public int? BookingId { get; set; }
+        [Required]
+        [Column("BookingId")]
+        public int BookingId { get; set; }
 
         [Required]
         [Column("payment_method")]
-        public string PaymentMethod { get; set; }
+        [MaxLength(191)]
+        public string payment_method { get; set; }
 
         [Column("payment_status")]
-        public byte? PaymentStatus { get; set; }
+        public byte? payment_status { get; set; }
 
         [Column("amount", TypeName = "decimal(18, 2)")]
-        public decimal? Amount { get; set; }
+        public decimal? amount { get; set; }
 
         [Column("payment_date")]
-        public DateTime? PaymentDate { get; set; }
+        public DateTime? payment_date { get; set; }
 
-        [Column("created_at")]
-        public DateTime CreatedAt { get; set; } = DateTime.Now;
-
-        [Column("updated_at")]
-        public DateTime UpdatedAt { get; set; } = DateTime.Now;
-
-        // Quan hệ với bảng `Bookings`
-        public Booking Booking { get; set; }
+        //// Quan hệ với bảng `Bookings`
+        //[ForeignKey("BookingId")]
+        //public Booking Booking { get; set; }
     }
 }

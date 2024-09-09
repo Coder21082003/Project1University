@@ -1,12 +1,12 @@
-﻿using System;
+﻿using CommonDataLayer.DTO;
+using CommonDataLayer.Entities;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace DataAccessLayer.BookingDL
+namespace DataAccessLayer
 {
-    internal interface IBookingDL
+    public interface IBookingDL : IBaseDL<Booking>
     {
+
     }
 }

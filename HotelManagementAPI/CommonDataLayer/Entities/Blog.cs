@@ -5,32 +5,34 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace CommonDataLayer.Entities
 {
     [Table("blog")]
-    public class Blog
+    public class Blog : BaseModel
     {
         [Key]
-        [Column("blog_id")]
+        [Column("BlogId")]
         public int BlogId { get; set; }
 
         [Required]
         [Column("image")]
-        public string Image { get; set; }
+        public string image { get; set; } // Lưu trữ mảng JSON dưới dạng chuỗi
 
         [Column("blog_title")]
-        public string BlogTitle { get; set; }
+        public string blog_title { get; set; }
 
         [Column("blog_author")]
-        public string BlogAuthor { get; set; }
+        public string blog_author { get; set; }
 
         [Column("blog_time")]
-        public DateTime? BlogTime { get; set; }
+        public DateTime? blog_time { get; set; }
 
         [Column("blog_description")]
-        public string BlogDescription { get; set; }
+        public string blog_description { get; set; }
 
-        [Column("created_at")]
-        public DateTime? CreatedAt { get; set; } = DateTime.Now;
 
-        [Column("updated_at")]
-        public DateTime? UpdatedAt { get; set; } = DateTime.Now;
+        [ForeignKey("UserId")]
+        [Column("UserId")]
+        public int UserId { get; set; } // Trường khóa ngoại liên kết với bảng users
+
+        //// Navigation property
+        //public virtual User User { get; set; } // Chỉ định quan hệ với bảng users
     }
 }

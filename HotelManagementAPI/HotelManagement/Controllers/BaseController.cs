@@ -34,9 +34,9 @@ namespace HotelManagement.Controllers
         {
             try
             {
-                Guid insertedId = _baseBL.InsertOneRecord(record);
+                int insertedId = _baseBL.InsertOneRecord(record);
 
-                if (insertedId != Guid.Empty)
+                if (insertedId > 0)
                 {
                     return StatusCode(201, insertedId);
                 }
@@ -94,12 +94,13 @@ namespace HotelManagement.Controllers
 
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpGet("{Id}")]
-        public IActionResult GetRecordById([FromRoute] Guid id)
+        public IActionResult GetRecordById([FromRoute] string Id)
         {
             try
             {
+                int id = int.Parse(Id);
                 T record = _baseBL.GetRecordById(id);
                 if (record != null)
                 {
@@ -126,9 +127,9 @@ namespace HotelManagement.Controllers
             }
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpPost("delete")]
-        public IActionResult MultiDeleteRecords([FromBody] List<Guid> ids)
+        public IActionResult MultiDeleteRecords([FromBody] List<int> ids)
         {
             try
             {
@@ -154,13 +155,13 @@ namespace HotelManagement.Controllers
 
         //[Authorize]
         [HttpPost("update/{Id}")]
-        public IActionResult UpdateRecord(Guid Id, [FromBody] T record)
+        public IActionResult UpdateRecord(int Id, [FromBody] T record)
         {
             try
             {
-                Guid updateId = _baseBL.UpdateOneRecord(Id, record);
+                int updateId = _baseBL.UpdateOneRecord(Id, record);
 
-                if (updateId != Guid.Empty)
+                if (updateId > 0)
                 {
                     return StatusCode(201, updateId);
                 }

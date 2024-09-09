@@ -31,7 +31,7 @@ namespace DataAccessLayer
         /// <returns>
         ///     Đối tượng cần tìm
         /// </returns>
-        public T GetRecordById(Guid id);
+        public T GetRecordById(int id);
 
         /// <summary>
         /// Hàm xóa những bản ghi
@@ -51,7 +51,7 @@ namespace DataAccessLayer
         /// <returns>
         ///     ID của bản ghi được thêm mới thành công
         /// </returns>
-        public Guid InsertOneRecord(T record);
+        public int InsertOneRecord(T record);
 
         /// <summary>
         /// Hàm sửa 1 bản ghi
@@ -62,6 +62,6 @@ namespace DataAccessLayer
         /// <returns>
         ///     ID của bản ghi đã được sửa thành công
         /// </returns>
-        public Guid UpdateOneRecord(T record);
+        public int UpdateOneRecord(T record);
     }
 }

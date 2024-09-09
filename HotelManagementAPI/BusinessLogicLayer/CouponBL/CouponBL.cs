@@ -1,12 +1,38 @@
-﻿using System;
+﻿using BusinessLogicLayer.Exceptions;
+using CommonDataLayer.DTO;
+using CommonDataLayer.Entities;
+using CommonDataLayer.Enum;
+using DataAccessLayer;
+using DataAccessLayer.CouponDL;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BusinessLogicLayer.CouponBL
 {
-    internal class CouponBL
+    public class CouponBL : BaseBL<Coupon>, ICouponBL
     {
+        #region Field
+
+        private readonly ICouponDL _couponDL;
+        private readonly List<string> _errors = new List<string>();
+
+        #endregion
+
+        #region Constructor
+
+        public CouponBL(ICouponDL couponDL) : base(couponDL)
+        {
+            _couponDL = couponDL;
+        }
+
+        #endregion
+
+        #region Methods
+
+        // Implement specific business logic methods for Coupon here
+        // For example:
+        // public void SomeCouponMethod() { ... }
+
+        #endregion
     }
 }
