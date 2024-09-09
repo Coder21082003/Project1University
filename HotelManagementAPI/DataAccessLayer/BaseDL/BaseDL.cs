@@ -4,10 +4,10 @@ using Dapper;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Data.SqlClient; // Thay đổi từ MySqlConnector
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccessLayer
 {
@@ -18,41 +18,37 @@ namespace DataAccessLayer
         public int DeleteRecords(string ids)
         {
             string tableName = EntityUntilities.GetTableName<T>();
-            string storedProc = $"Proc_Base_MultiDelete";
+            var primaryKeyProp = typeof(T).GetProperties().FirstOrDefault(prop => prop.GetCustomAttributes(typeof(KeyAttribute), true).Any());
+            string tableKey = primaryKeyProp?.Name ?? "";
 
-            var primaryKeyProp = typeof(T).GetProperties().FirstOrDefault(prop => prop.GetCustomAttributes(typeof(KeyAttribute), true).Count() > 0);
-            string tableKey = "";
-            if (primaryKeyProp != null)
+            var query = new StringBuilder()
+                .AppendLine($"DELETE FROM {tableName}")
+                .AppendLine($" WHERE {tableKey} IN ({ids})");
+
+            using (var sqlConnection = new SqlConnection(DatabaseContext.ConnectionString))
             {
-                tableKey = primaryKeyProp.Name;
-            }
-
-            var parameters = new DynamicParameters();
-            parameters.Add("@Ids", ids); // Thay đổi dấu $ thành @ cho SQL Server
-            parameters.Add("@TableName", tableName);
-            parameters.Add("@TableKey", tableKey);
-            parameters.Add("@DeletedDate", EntityUntilities.GetNowTimestamp());
-
-            using (var sqlConnection = new SqlConnection(DatabaseContext.ConnectionString)) // Thay đổi từ MySqlConnection thành SqlConnection
-            {
-                int affectedRows = sqlConnection.Execute(storedProc, parameters, commandType: System.Data.CommandType.StoredProcedure);
-
+                int affectedRows = sqlConnection.Execute(query.ToString());
                 return affectedRows;
             }
         }
 
-        public T GetRecordById(Guid id)
+        public T GetRecordById(int id)
         {
             string tableName = EntityUntilities.GetTableName<T>();
-            string storedProc = $"Proc_{tableName}_GetDetail";
+            var primaryKeyProp = typeof(T).GetProperties().FirstOrDefault(prop => prop.GetCustomAttributes(typeof(KeyAttribute), true).Any());
+            string tableKey = primaryKeyProp?.Name ?? "";
+
+            var query = new StringBuilder()
+                .AppendLine($"SELECT * FROM {tableName}")
+                .AppendLine($" WHERE {tableKey} = @Id");
 
             var parameters = new DynamicParameters();
-            parameters.Add("@Id", id); // Thay đổi dấu $ thành @ cho SQL Server
+            parameters.Add("@Id", id);
 
-            using (var sqlConnection = new SqlConnection(DatabaseContext.ConnectionString)) // Thay đổi từ MySqlConnection thành SqlConnection
+            using (var sqlConnection = new SqlConnection(DatabaseContext.ConnectionString))
             {
-                T record = sqlConnection.QueryFirstOrDefault<T>(storedProc, parameters, commandType: System.Data.CommandType.StoredProcedure);
-
+                // Fetch the record
+                T record = sqlConnection.QueryFirstOrDefault<T>(query.ToString(), parameters);
                 return record;
             }
         }
@@ -60,99 +56,139 @@ namespace DataAccessLayer
         public PagingData<T> FilterRecord(FilterData filterData)
         {
             string tableName = EntityUntilities.GetTableName<T>();
-            string storedProc = $"Proc_{tableName}_FilterRecord";
+
+            // Xây dựng câu lệnh SELECT
+            var query = new StringBuilder()
+                .AppendLine($"SELECT * FROM {tableName}")
+                .AppendLine($"WHERE {filterData.Condition}") // Đảm bảo điều kiện WHERE hợp lệ
+                .AppendLine($"ORDER BY {filterData.Sort}") // Đảm bảo cột trong ORDER BY là hợp lệ
+                .AppendLine($"OFFSET @Offset ROWS FETCH NEXT @Limit ROWS ONLY");
 
             var parameters = new DynamicParameters();
-
-            parameters.Add("@Where", filterData.Condition); // Thay đổi dấu $ thành @ cho SQL Server
-            parameters.Add("@Sort", filterData.Sort);
             parameters.Add("@Offset", (filterData.Page - 1) * filterData.Limit);
             parameters.Add("@Limit", filterData.Limit);
 
-            using (var sqlConnection = new SqlConnection(DatabaseContext.ConnectionString)) // Thay đổi từ MySqlConnection thành SqlConnection
-            {
-                var result = sqlConnection.QueryMultiple(storedProc, parameters, commandType: System.Data.CommandType.StoredProcedure);
+            // Xây dựng câu lệnh COUNT
+            var countQuery = new StringBuilder()
+                .AppendLine($"SELECT COUNT(1) FROM {tableName}")
+                .AppendLine($"WHERE {filterData.Condition}");
 
-                return new PagingData<T>()
+            using (var sqlConnection = new SqlConnection(DatabaseContext.ConnectionString))
+            {
+                try
                 {
-                    Data = result.Read<T>().ToList(),
-                    TotalCount = result.Read<long>().Single()
-                };
+                    // Thực hiện câu lệnh SELECT và COUNT
+                    var result = sqlConnection.QueryMultiple(query.ToString(), parameters);
+                    long totalCount = sqlConnection.ExecuteScalar<long>(countQuery.ToString(), parameters);
+
+                    return new PagingData<T>()
+                    {
+                        Data = result.Read<T>().ToList(),
+                        TotalCount = totalCount
+                    };
+                }
+                catch (SqlException ex)
+                {
+                    // Log lỗi SQL
+                    Console.WriteLine($"SQL Error: {ex.Message}");
+                    throw;
+                }
+                catch (Exception ex)
+                {
+                    // Log lỗi chung
+                    Console.WriteLine($"Error: {ex.Message}");
+                    throw;
+                }
             }
         }
 
-        public Guid InsertOneRecord(T record)
+
+        public int InsertOneRecord(T record)
         {
             string tableName = EntityUntilities.GetTableName<T>();
-            string storedProc = $"Proc_{tableName}_InsertOne";
-
-            // Chuẩn bị tham số
+            var props = typeof(T).GetProperties();
+            var columns = new StringBuilder();
+            var values = new StringBuilder();
             var parameters = new DynamicParameters();
 
-            var props = typeof(T).GetProperties();
             foreach (var prop in props)
             {
-                var propName = $"@{prop.Name}"; // Thay đổi dấu $ thành @ cho SQL Server
+                var propName = prop.Name;
                 var propValue = prop.GetValue(record);
-                parameters.Add(propName, propValue);
+
+                // Skip the IDENTITY column
+                if (prop.GetCustomAttributes(typeof(KeyAttribute), true).Any())
+                    continue;
+
+                if (propValue != null)
+                {
+                    columns.Append($"{propName}, ");
+                    values.Append($"@{propName}, ");
+                    parameters.Add($"@{propName}", propValue);
+                }
             }
 
-            // Thực hiện lệnh với tham số đầu vào
-            using (var sqlConnection = new SqlConnection(DatabaseContext.ConnectionString)) // Thay đổi từ MySqlConnection thành SqlConnection
+            columns.Length -= 2; // Remove trailing comma
+            values.Length -= 2; // Remove trailing comma
+
+            var query = new StringBuilder()
+                .AppendLine($"INSERT INTO {tableName} ({columns})")
+                .AppendLine($" VALUES ({values})")
+                .AppendLine($" SELECT SCOPE_IDENTITY()"); // Get the new ID
+
+            using (var sqlConnection = new SqlConnection(DatabaseContext.ConnectionString))
             {
-                int affectedRow = sqlConnection.Execute(storedProc, parameters, commandType: System.Data.CommandType.StoredProcedure);
-
-                var result = Guid.Empty;
-                if (affectedRow > 0)
-                {
-                    var primaryKeyProp = typeof(T).GetProperties().FirstOrDefault(prop => prop.GetCustomAttributes(typeof(KeyAttribute), true).Count() > 0);
-                    var newID = primaryKeyProp?.GetValue(record);
-
-                    if (newID != null)
-                    {
-                        result = (Guid)newID;
-                    }
-                }
-                return result;
+                int newId = sqlConnection.QuerySingle<int>(query.ToString(), parameters);
+                return newId;
             }
         }
 
-        public Guid UpdateOneRecord(T record)
+
+        public int UpdateOneRecord(T record)
         {
             string tableName = EntityUntilities.GetTableName<T>();
-            string storedProc = $"Proc_{tableName}_UpdateOne";
-
-            // Chuẩn bị tham số
-            var parameters = new DynamicParameters();
-
             var props = typeof(T).GetProperties();
+            var setClause = new StringBuilder();
+            var parameters = new DynamicParameters();
+            int id = 0;
+
             foreach (var prop in props)
             {
-                var propName = $"@{prop.Name}"; // Thay đổi dấu $ thành @ cho SQL Server
+                var propName = prop.Name;
                 var propValue = prop.GetValue(record);
-                parameters.Add(propName, propValue);
-            }
 
-            // Thực hiện lệnh với tham số đầu vào
-            using (var sqlConnection = new SqlConnection(DatabaseContext.ConnectionString)) // Thay đổi từ MySqlConnection thành SqlConnection
-            {
-                int affectedRow = sqlConnection.Execute(storedProc, parameters, commandType: System.Data.CommandType.StoredProcedure);
-
-                var result = Guid.Empty;
-                if (affectedRow > 0)
+                if (propValue != null)
                 {
-                    var primaryKeyProp = typeof(T).GetProperties().FirstOrDefault(prop => prop.GetCustomAttributes(typeof(KeyAttribute), true).Count() > 0);
-                    var updatedID = primaryKeyProp?.GetValue(record);
-
-                    if (updatedID != null)
+                    if (prop.GetCustomAttributes(typeof(KeyAttribute), true).Any())
                     {
-                        result = (Guid)updatedID;
+                        id = (int)propValue;
+                    }
+                    else
+                    {
+                        setClause.Append($"{propName} = @{propName}, ");
+                        parameters.Add($"@{propName}", propValue);
                     }
                 }
-                return result;
+            }
+
+            setClause.Length -= 2; // Remove trailing comma
+
+            var primaryKeyProp = typeof(T).GetProperties().FirstOrDefault(prop => prop.GetCustomAttributes(typeof(KeyAttribute), true).Any());
+            string tableKey = primaryKeyProp?.Name ?? "";
+
+            var query = new StringBuilder()
+                .AppendLine($" UPDATE {tableName}")
+                .AppendLine($" SET {setClause}")
+                .AppendLine($" WHERE {tableKey} = @Id");
+
+            parameters.Add("@Id", id);
+
+            using (var sqlConnection = new SqlConnection(DatabaseContext.ConnectionString))
+            {
+                int affectedRows = sqlConnection.Execute(query.ToString(), parameters);
+                return id;
             }
         }
-
         #endregion
     }
 }

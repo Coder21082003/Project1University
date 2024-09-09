@@ -1,48 +1,57 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CommonDataLayer.Entities
 {
     [Table("bookings")]
-    public class Booking
+    public class Booking : BaseModel
     {
         [Key]
-        [Column("booking_id")]
+        [Column("BookingId")]
         public int BookingId { get; set; }
 
-        [Column("user_id")]
-        public int? UserId { get; set; }
+        [Required]
+        [Column("UserId")]
+        public long UserId { get; set; }
 
-        [Column("room_id")]
-        public int? RoomId { get; set; }
+        [Required]
+        [Column("RoomId")]
+        public int RoomId { get; set; }
 
+        [Required]
         [Column("check_in_date")]
-        public DateTime? CheckInDate { get; set; }
+        public DateTime check_in_date { get; set; }
 
+        [Required]
         [Column("check_out_date")]
-        public DateTime? CheckOutDate { get; set; }
+        public DateTime check_out_date { get; set; }
 
+        [Required]
         [Column("booking_date")]
-        public DateTime? BookingDate { get; set; }
+        public DateTime booking_date { get; set; }
 
         [Column("status")]
-        public byte? Status { get; set; }
+        public byte? status { get; set; }
 
         [Column("total_price", TypeName = "decimal(18, 2)")]
-        public decimal? TotalPrice { get; set; }
+        public decimal? total_price { get; set; }
 
-        [Column("created_at")]
-        public DateTime CreatedAt { get; set; } = DateTime.Now;
+        [Column("discount_amount", TypeName = "decimal(18, 2)")]
+        public decimal? discount_amount { get; set; }
 
-        [Column("updated_at")]
-        public DateTime UpdatedAt { get; set; } = DateTime.Now;
+        //// Quan hệ với bảng `Users` và `Rooms`
+        //[ForeignKey("UserId")]
+        //public User User { get; set; }
 
-        // Quan hệ với bảng `Users` và `Rooms`
-        public User User { get; set; }
-        public Room Room { get; set; }
+        //[ForeignKey("RoomId")]
+        //public Room Room { get; set; }
 
-        // Quan hệ với bảng `Payments`
-        public ICollection<Payment> Payments { get; set; }
+        //// Quan hệ với bảng `Payments`
+        //public ICollection<Payment> Payments { get; set; }
+
+        //// Quan hệ với bảng `ServiceBooking`
+        //public ICollection<ServiceBooking> ServiceBookings { get; set; }
     }
 }

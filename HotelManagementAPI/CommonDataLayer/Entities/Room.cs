@@ -1,44 +1,46 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CommonDataLayer.Entities
 {
     [Table("rooms")]
-    public class Room
+    public class Room : BaseModel
     {
         [Key]
-        [Column("room_id")]
+        [Column("RoomId")]
         public int RoomId { get; set; }
 
         [Required]
         [Column("room_type")]
-        public string RoomType { get; set; }
+        [MaxLength(191)]
+        public string room_type { get; set; }
 
         [Required]
         [Column("description", TypeName = "text")]
-        public string Description { get; set; }
+        public string description { get; set; }
 
         [Column("price", TypeName = "decimal(18, 2)")]
-        public decimal? Price { get; set; }
+        public decimal? price { get; set; }
 
         [Required]
-        [Column("image_url")]
-        public string ImageUrl { get; set; }
+        [Column("image_url", TypeName = "varchar(max)")]
+        public string image_url { get; set; }
 
         [Required]
+        [Column("status")]
+        public byte? status { get; set; }
+
+        [Column("rating")]
+        public float? rating { get; set; }
+
         [Column("amenities")]
-        public string Amenities { get; set; }
+        public string amenities { get; set; }
 
-        [Column("created_at")]
-        public DateTime CreatedAt { get; set; } = DateTime.Now;
-
-        [Column("updated_at")]
-        public DateTime UpdatedAt { get; set; } = DateTime.Now;
-
-        //key
-        public ICollection<Booking> Bookings { get; set; }  // Navigation property
-        public ICollection<CouponRoom> CouponRooms { get; set; }  // Navigation property
-        public ICollection<Review> Reviews { get; set; }  // Navigation property
+        //// Quan hệ với bảng `Bookings`, `CouponRooms` và `Reviews`
+        //public ICollection<Booking> Bookings { get; set; }  // Navigation property
+        //public ICollection<CouponRoom> CouponRooms { get; set; }  // Navigation property
+        //public ICollection<Review> Reviews { get; set; }  // Navigation property
     }
 }

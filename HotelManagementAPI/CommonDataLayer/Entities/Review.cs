@@ -5,33 +5,34 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace CommonDataLayer.Entities
 {
     [Table("reviews")]
-    public class Review
+    public class Review : BaseModel
     {
         [Key]
-        [Column("review_id")]
-        public int ReviewId { get; set; }
+        [Column("ReviewId")]
+        public long ReviewId { get; set; }
 
-        [Column("user_id")]
-        public int? UserId { get; set; }
+        [Required]
+        [Column("UserId")]
+        public long UserId { get; set; }
 
-        [Column("room_id")]
-        public int? RoomId { get; set; }
+        [Required]
+        [Column("RoomId")]
+        public int RoomId { get; set; }
 
+        [Required]
         [Column("rating")]
-        public int? Rating { get; set; }
+        [Range(1, 5)]
+        public int rating { get; set; }
 
         [Column("comment")]
-        [MaxLength(255)]
-        public string? Comment { get; set; }
+        [MaxLength(1000)] // Adjusted length for comments
+        public string? comment { get; set; }
 
-        [Column("created_at")]
-        public DateTime CreatedAt { get; set; } = DateTime.Now;
+        //// Quan hệ với bảng `Users` và `Rooms`
+        //[ForeignKey("UserId")]
+        //public User User { get; set; }
 
-        [Column("updated_at")]
-        public DateTime UpdatedAt { get; set; } = DateTime.Now;
-
-        // Quan hệ với bảng `Users` và `Rooms`
-        public User User { get; set; }
-        public Room Room { get; set; }
+        //[ForeignKey("RoomId")]
+        //public Room Room { get; set; }
     }
 }

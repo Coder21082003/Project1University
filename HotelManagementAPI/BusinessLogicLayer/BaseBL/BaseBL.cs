@@ -6,15 +6,8 @@ using DataAccessLayer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Globalization;
 using System.Linq;
-using System.Net.NetworkInformation;
-using System.Reflection;
-using System.Reflection.Metadata;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace BusinessLogicLayer
 {
@@ -22,7 +15,7 @@ namespace BusinessLogicLayer
     {
         #region Field
 
-        private IBaseDL<T> _baseDL;
+        private readonly IBaseDL<T> _baseDL;
 
         #endregion
 
@@ -37,13 +30,14 @@ namespace BusinessLogicLayer
 
         #region Methods
 
-        public int DeleteRecords(List<Guid> ids)
+        public int DeleteRecords(List<int> ids)
         {
-            string listIds = $"'{string.Join("', '", ids)}'"; 
-            return _baseDL.DeleteRecords(listIds);
+            // Chuyển danh sách ID thành chuỗi các ID cách nhau bằng dấu phẩy
+            string idsString = string.Join(",", ids);
+            return _baseDL.DeleteRecords(idsString);
         }
 
-        public T GetRecordById(Guid id)
+        public T GetRecordById(int id)
         {
             return _baseDL.GetRecordById(id);
         }
@@ -73,7 +67,7 @@ namespace BusinessLogicLayer
                 return isAttr;
             });
 
-            if(!String.IsNullOrEmpty(filterData.Name))
+            if (!String.IsNullOrEmpty(filterData.Name))
             {
                 filter.Condition = $"{descAttr?.Name} = '{filterData.Name}'";
             }
@@ -85,14 +79,14 @@ namespace BusinessLogicLayer
             return _baseDL.FilterRecord(filter);
         }
 
-        public Guid InsertOneRecord(T record)
+        public int InsertOneRecord(T record)
         {
             CheckSqlInjection(record);
             Validate(record, Method.Insert);
             return _baseDL.InsertOneRecord(record);
         }
 
-        public Guid UpdateOneRecord(Guid id, T record)
+        public int UpdateOneRecord(int id, T record)
         {
             var primaryKeyProp = typeof(T).GetProperties().FirstOrDefault(prop => prop.GetCustomAttributes(typeof(KeyAttribute), true).Count() > 0);
 
@@ -108,7 +102,7 @@ namespace BusinessLogicLayer
 
         protected virtual void Validate(T record, Method method)
         {
-
+            // Thực hiện các kiểm tra hợp lệ cho bản ghi tùy thuộc vào phương thức
         }
 
         /// <summary>
@@ -183,7 +177,6 @@ namespace BusinessLogicLayer
         /// </summary>
         /// <param name="email">Email cần kiểm tra</param>
         /// <returns>true/false</returns>
-        /// Author: LHNAM (15/06/2022)
         public static bool IsEmail(string email)
         {
             if (String.IsNullOrEmpty(email))
@@ -193,13 +186,13 @@ namespace BusinessLogicLayer
             return Regex.IsMatch(email, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
         }
 
-        public static bool IsPhoneNo(string phonNo)
+        public static bool IsPhoneNo(string phoneNo)
         {
-            if(String.IsNullOrEmpty(phonNo))
+            if (String.IsNullOrEmpty(phoneNo))
             {
                 return false;
             }
-            return Regex.IsMatch(phonNo, @"^[0-9]{9,15}$");
+            return Regex.IsMatch(phoneNo, @"^[0-9]{9,15}$");
         }
 
         #endregion

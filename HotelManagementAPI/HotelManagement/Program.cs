@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.Data.SqlClient;
@@ -6,6 +6,16 @@ using System.Text;
 using DataAccessLayer;
 using BusinessLogicLayer;
 using CommonDataLayer;
+using BusinessLogicLayer.BookingBL;
+using BusinessLogicLayer.CouponBL;
+using BusinessLogicLayer.CouponRoomBL;
+using BusinessLogicLayer.UserBL;
+using DataAccessLayer.BookingDL;
+using DataAccessLayer.CouponDL;
+using DataAccessLayer.CouponRoomDL;
+using DataAccessLayer.RoomDL;
+using DataAccessLayer.UserDL;
+using BusinessLogicLayer.ServiceBL;
 
 var builder = WebApplication.CreateBuilder(args);
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
@@ -14,8 +24,21 @@ var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 builder.Services.AddScoped(typeof(IBaseDL<>), typeof(BaseDL<>));
 builder.Services.AddScoped(typeof(IBaseBL<>), typeof(BaseBL<>));
 
+// Data Access Layer (DAL) - Data Layer
 builder.Services.AddScoped<IBlogDL, BlogDL>();
+builder.Services.AddScoped<IBookingDL, BookingDL>();
+builder.Services.AddScoped<ICouponDL, CouponDL>();
+builder.Services.AddScoped<ICouponRoomDL, CouponRoomDL>();
+builder.Services.AddScoped<IServiceBookingDL, ServiceBookingDL>();
+builder.Services.AddScoped<IUserDL, UserDL>();
+
+// Business Logic Layer (BLL) - Business Layer
 builder.Services.AddScoped<IBlogBL, BlogBL>();
+builder.Services.AddScoped<IBookingBL, BookingBL>();
+builder.Services.AddScoped<ICouponBL, CouponBL>();
+builder.Services.AddScoped<ICouponRoomBL, CouponRoomBL>();
+builder.Services.AddScoped<IServiceBookingBL, ServiceBookingBL>();
+builder.Services.AddScoped<IUserBL, UserBL>();
 
 // Add services to the container.
 builder.Services.AddControllers();
