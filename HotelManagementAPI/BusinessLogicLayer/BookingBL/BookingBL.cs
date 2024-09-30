@@ -13,7 +13,7 @@ namespace BusinessLogicLayer.BookingBL
     {
         #region Field
 
-        private readonly IBookingDL _blogDL;
+        private readonly IBookingDL _blookingDL;
         private readonly List<string> _errors = new List<string>();
 
         #endregion
@@ -22,7 +22,12 @@ namespace BusinessLogicLayer.BookingBL
 
         public BookingBL(IBookingDL bookingDL) : base(bookingDL)
         {
-            _blogDL = bookingDL;
+            _blookingDL = bookingDL;
+        }
+
+        public IEnumerable<BookingWithName> GetAllBooking()
+        {
+            return _blookingDL.GetAllBooking();
         }
 
         #endregion

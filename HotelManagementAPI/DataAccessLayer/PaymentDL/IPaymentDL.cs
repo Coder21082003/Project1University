@@ -14,5 +14,6 @@ namespace DataAccessLayer.PaymentDL
 {
     public interface IPaymentDL : IBaseDL<Payment>
     {
+        public IEnumerable<PaymentWithName> GetAllPayment();
     }
 }

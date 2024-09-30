@@ -6,6 +6,6 @@ namespace BusinessLogicLayer
 {
     public interface IPaymentBL : IBaseBL<Payment>
     {
-
+        public IEnumerable<PaymentWithName> GetAllPayment();
     }
 }

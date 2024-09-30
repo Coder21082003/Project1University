@@ -27,6 +27,25 @@ namespace HotelManagement.Controllers
 
         #endregion
 
-
+        [HttpGet("allBooking")]
+        public IActionResult GetAllBookings()
+        {
+            try
+            {
+                var records = _bookingBL.GetAllBooking();
+                if (records != null)
+                {
+                    return StatusCode(200, records);
+                }
+                else
+                {
+                    return StatusCode(404, "Không có dữ liệu");
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
     }
 }

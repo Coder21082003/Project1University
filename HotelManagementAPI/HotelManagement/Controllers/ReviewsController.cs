@@ -28,5 +28,25 @@ namespace HotelManagement.Controllers
         #endregion
 
         // Add additional endpoints specific to Review if needed
+        [HttpGet("allReview")]
+        public IActionResult GetAllBookings()
+        {
+            try
+            {
+                var records = _reviewBL.GetAllReview();
+                if (records != null)
+                {
+                    return StatusCode(200, records);
+                }
+                else
+                {
+                    return StatusCode(404, "Không có dữ liệu");
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
     }
 }

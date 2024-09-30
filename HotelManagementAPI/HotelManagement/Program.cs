@@ -16,6 +16,11 @@ using DataAccessLayer.CouponRoomDL;
 using DataAccessLayer.RoomDL;
 using DataAccessLayer.UserDL;
 using BusinessLogicLayer.ServiceBL;
+using BusinessLogicLayer.PaymentBL;
+using BusinessLogicLayer.RoomBL;
+using BusinessLogicLayer.ReviewBL;
+using DataAccessLayer.PaymentDL;
+using DataAccessLayer.ReviewDL;
 
 var builder = WebApplication.CreateBuilder(args);
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
@@ -30,14 +35,22 @@ builder.Services.AddScoped<IBookingDL, BookingDL>();
 builder.Services.AddScoped<ICouponDL, CouponDL>();
 builder.Services.AddScoped<ICouponRoomDL, CouponRoomDL>();
 builder.Services.AddScoped<IServiceBookingDL, ServiceBookingDL>();
+builder.Services.AddScoped<IPaymentDL, PaymentDL>();
+builder.Services.AddScoped<IReviewDL, ReivewDL>();
+builder.Services.AddScoped<IRoomDL, RoomDL>();
+builder.Services.AddScoped<IServiceDL, ServiceDL>();
 builder.Services.AddScoped<IUserDL, UserDL>();
 
 // Business Logic Layer (BLL) - Business Layer
 builder.Services.AddScoped<IBlogBL, BlogBL>();
 builder.Services.AddScoped<IBookingBL, BookingBL>();
-builder.Services.AddScoped<ICouponBL, CouponBL>();
+builder.Services.AddScoped<ICouponBL, SerivceBL>();
 builder.Services.AddScoped<ICouponRoomBL, CouponRoomBL>();
 builder.Services.AddScoped<IServiceBookingBL, ServiceBookingBL>();
+builder.Services.AddScoped<IPaymentBL, PaymentBL>();
+builder.Services.AddScoped<IReviewBL, ReviewBL>();
+builder.Services.AddScoped<IRoomBL, RoomBL>();
+builder.Services.AddScoped<IServiceBL, ServiceBL>();
 builder.Services.AddScoped<IUserBL, UserBL>();
 
 // Add services to the container.

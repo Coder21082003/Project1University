@@ -37,6 +37,11 @@ namespace BusinessLogicLayer
             return _baseDL.DeleteRecords(idsString);
         }
 
+        public int DeleteOneRecord(int id)
+        {
+            return _baseDL.DeleteOneRecord(id);
+        }
+
         public T GetRecordById(int id)
         {
             return _baseDL.GetRecordById(id);
@@ -193,6 +198,11 @@ namespace BusinessLogicLayer
                 return false;
             }
             return Regex.IsMatch(phoneNo, @"^[0-9]{9,15}$");
+        }
+
+        public IEnumerable<T> GetAll()
+        {
+            return _baseDL.GetAll();
         }
 
         #endregion

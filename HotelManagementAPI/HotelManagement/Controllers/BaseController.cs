@@ -28,6 +28,27 @@ namespace HotelManagement.Controllers
 
         #region Methods
 
+        [HttpGet("all")]
+        public IActionResult GetAllRecords()
+        {
+            try
+            {
+                var records = _baseBL.GetAll();
+                if (records != null)
+                {
+                    return StatusCode(200, records);
+                }
+                else
+                {
+                    return StatusCode(404, "Không có dữ liệu");
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
         //[Authorize]
         [HttpPost("insert")]
         public IActionResult InsertRecord([FromBody] T record)
@@ -127,8 +148,36 @@ namespace HotelManagement.Controllers
             }
         }
 
+        [HttpDelete("{Id}")]
+        public IActionResult DeleteOneRecord([FromRoute] int Id)
+        {
+            try
+            {
+                int deletedCount = _baseBL.DeleteOneRecord(Id);
+
+                if (deletedCount > 0)
+                {
+                    return StatusCode(200, new
+                    {
+                        DeletedId = Id,
+                        DeletedCount = deletedCount
+                    });
+                }
+                else
+                {
+                    return StatusCode(404, "Không tìm thấy bản ghi để xóa.");
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+
+
         //[Authorize]
-        [HttpPost("delete")]
+        [HttpPost("multiDelete")]
         public IActionResult MultiDeleteRecords([FromBody] List<int> ids)
         {
             try
