@@ -9,7 +9,7 @@ using System.Collections.Generic;
 
 namespace BusinessLogicLayer.CouponBL
 {
-    public class CouponBL : BaseBL<Coupon>, ICouponBL
+    public class SerivceBL : BaseBL<Coupon>, ICouponBL
     {
         #region Field
 
@@ -20,7 +20,7 @@ namespace BusinessLogicLayer.CouponBL
 
         #region Constructor
 
-        public CouponBL(ICouponDL couponDL) : base(couponDL)
+        public SerivceBL(ICouponDL couponDL) : base(couponDL)
         {
             _couponDL = couponDL;
         }

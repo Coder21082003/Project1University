@@ -41,6 +41,7 @@ namespace BusinessLogicLayer
         /// <returns>
         ///     Số bản ghi bị xóa
         /// </returns>
+        public int DeleteOneRecord(int id);
         public int DeleteRecords(List<int> ids);
 
         /// <summary>
@@ -63,5 +64,16 @@ namespace BusinessLogicLayer
         ///     ID của bản ghi đã được sửa thành công
         /// </returns>
         public int UpdateOneRecord(int id, T record);
+
+        /// <summary>
+        /// Hàm sửa 1 bản ghi
+        /// Author: LHNAM (28/6/2023)
+        /// </summary>
+        /// <param name="id">ID của bản ghi cần sửa</param>
+        /// <param name="record">Dữ liệu của bản ghi cần sửa</param>
+        /// <returns>
+        ///     ID của bản ghi đã được sửa thành công
+        /// </returns>
+        public IEnumerable<T> GetAll();
     }
 }

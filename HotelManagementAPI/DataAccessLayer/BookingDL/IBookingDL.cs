@@ -7,6 +7,6 @@ namespace DataAccessLayer
 {
     public interface IBookingDL : IBaseDL<Booking>
     {
-
+        public IEnumerable<BookingWithName> GetAllBooking();
     }
 }

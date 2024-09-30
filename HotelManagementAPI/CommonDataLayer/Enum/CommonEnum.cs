@@ -28,16 +28,16 @@ namespace CommonDataLayer.Enum
     public enum Level
     {
         //quan tri vien
-        Admin =1,
+        Admin =0,
 
         //quan ly 
-        Management = 2,
+        Management = 1,
 
         //Le tan
-        Servicer = 3,
+        Servicer = 2,
 
         //Nguoi dung
-        User = 4,
+        User = 3,
 
     }
 }

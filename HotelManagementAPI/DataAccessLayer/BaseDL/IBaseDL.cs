@@ -41,6 +41,8 @@ namespace DataAccessLayer
         /// <returns>
         ///     Số bản ghi bị xóa
         /// </returns>
+        /// 
+        public int DeleteOneRecord(int id);
         public int DeleteRecords(string ids);
 
         /// <summary>
@@ -63,5 +65,15 @@ namespace DataAccessLayer
         ///     ID của bản ghi đã được sửa thành công
         /// </returns>
         public int UpdateOneRecord(T record);
+
+        /// <summary>
+        /// Hàm lấy bản ghi theo ID
+        /// Author: LHNAM (28/6/2023)
+        /// </summary>
+        /// <param name="id">ID của bản ghi cần tìm</param>
+        /// <returns>
+        ///     Đối tượng cần tìm
+        /// </returns>
+        public IEnumerable<T> GetAll();
     }
 }

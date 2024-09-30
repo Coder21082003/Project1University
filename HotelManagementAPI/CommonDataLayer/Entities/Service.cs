@@ -25,6 +25,8 @@ namespace CommonDataLayer.Entities
         [Column("status")]
         public byte? status { get; set; }
 
+        [Column("image_url", TypeName = "varchar(max)")]
+        public string image_url { get; set; }
         //// Quan hệ với bảng `ServiceBooking`
         //public ICollection<ServiceBooking> ServiceBookings { get; set; }
     }

@@ -6,6 +6,6 @@ namespace BusinessLogicLayer
 {
     public interface IBookingBL : IBaseBL<Booking>
     {
-
+        public IEnumerable<BookingWithName> GetAllBooking();
     }
 }

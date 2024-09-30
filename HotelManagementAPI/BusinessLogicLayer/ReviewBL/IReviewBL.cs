@@ -6,6 +6,6 @@ namespace BusinessLogicLayer
 {
     public interface IReviewBL : IBaseBL<Review>
     {
-
+        public IEnumerable<ReviewWithName> GetAllReview();
     }
 }

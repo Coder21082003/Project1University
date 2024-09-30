@@ -24,6 +24,11 @@ namespace BusinessLogicLayer.ReviewBL
             _reviewDL = reviewDL;
         }
 
+        public IEnumerable<ReviewWithName> GetAllReview()
+        {
+            return _reviewDL.GetAllReview();
+        }
+
         #endregion
 
         #region Methods

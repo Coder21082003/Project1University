@@ -1,10 +1,3 @@
-F:\Gtvt\Ki1Nam4\Project1_BE\Project1University\HotelManagementAPI\HotelManagement\obj\Debug\net6.0\HotelManagement.csproj.AssemblyReference.cache
-F:\Gtvt\Ki1Nam4\Project1_BE\Project1University\HotelManagementAPI\HotelManagement\obj\Debug\net6.0\HotelManagement.GeneratedMSBuildEditorConfig.editorconfig
-F:\Gtvt\Ki1Nam4\Project1_BE\Project1University\HotelManagementAPI\HotelManagement\obj\Debug\net6.0\HotelManagement.AssemblyInfoInputs.cache
-F:\Gtvt\Ki1Nam4\Project1_BE\Project1University\HotelManagementAPI\HotelManagement\obj\Debug\net6.0\HotelManagement.AssemblyInfo.cs
-F:\Gtvt\Ki1Nam4\Project1_BE\Project1University\HotelManagementAPI\HotelManagement\obj\Debug\net6.0\HotelManagement.csproj.CoreCompileInputs.cache
-F:\Gtvt\Ki1Nam4\Project1_BE\Project1University\HotelManagementAPI\HotelManagement\obj\Debug\net6.0\HotelManagement.MvcApplicationPartsAssemblyInfo.cache
-F:\Gtvt\Ki1Nam4\Project1_BE\Project1University\HotelManagementAPI\HotelManagement\obj\Debug\net6.0\HotelManagement.sourcelink.json
 F:\Gtvt\Ki1Nam4\Project1_BE\Project1University\HotelManagementAPI\HotelManagement\bin\Debug\net6.0\appsettings.Development.json
 F:\Gtvt\Ki1Nam4\Project1_BE\Project1University\HotelManagementAPI\HotelManagement\bin\Debug\net6.0\appsettings.json
 F:\Gtvt\Ki1Nam4\Project1_BE\Project1University\HotelManagementAPI\HotelManagement\bin\Debug\net6.0\HotelManagement.exe
@@ -77,6 +70,13 @@ F:\Gtvt\Ki1Nam4\Project1_BE\Project1University\HotelManagementAPI\HotelManagemen
 F:\Gtvt\Ki1Nam4\Project1_BE\Project1University\HotelManagementAPI\HotelManagement\bin\Debug\net6.0\BusinessLogicLayer.pdb
 F:\Gtvt\Ki1Nam4\Project1_BE\Project1University\HotelManagementAPI\HotelManagement\bin\Debug\net6.0\CommonDataLayer.pdb
 F:\Gtvt\Ki1Nam4\Project1_BE\Project1University\HotelManagementAPI\HotelManagement\bin\Debug\net6.0\DataAccessLayer.pdb
+F:\Gtvt\Ki1Nam4\Project1_BE\Project1University\HotelManagementAPI\HotelManagement\obj\Debug\net6.0\HotelManagement.csproj.AssemblyReference.cache
+F:\Gtvt\Ki1Nam4\Project1_BE\Project1University\HotelManagementAPI\HotelManagement\obj\Debug\net6.0\HotelManagement.GeneratedMSBuildEditorConfig.editorconfig
+F:\Gtvt\Ki1Nam4\Project1_BE\Project1University\HotelManagementAPI\HotelManagement\obj\Debug\net6.0\HotelManagement.AssemblyInfoInputs.cache
+F:\Gtvt\Ki1Nam4\Project1_BE\Project1University\HotelManagementAPI\HotelManagement\obj\Debug\net6.0\HotelManagement.AssemblyInfo.cs
+F:\Gtvt\Ki1Nam4\Project1_BE\Project1University\HotelManagementAPI\HotelManagement\obj\Debug\net6.0\HotelManagement.csproj.CoreCompileInputs.cache
+F:\Gtvt\Ki1Nam4\Project1_BE\Project1University\HotelManagementAPI\HotelManagement\obj\Debug\net6.0\HotelManagement.MvcApplicationPartsAssemblyInfo.cs
+F:\Gtvt\Ki1Nam4\Project1_BE\Project1University\HotelManagementAPI\HotelManagement\obj\Debug\net6.0\HotelManagement.MvcApplicationPartsAssemblyInfo.cache
 F:\Gtvt\Ki1Nam4\Project1_BE\Project1University\HotelManagementAPI\HotelManagement\obj\Debug\net6.0\staticwebassets.build.json
 F:\Gtvt\Ki1Nam4\Project1_BE\Project1University\HotelManagementAPI\HotelManagement\obj\Debug\net6.0\staticwebassets.development.json
 F:\Gtvt\Ki1Nam4\Project1_BE\Project1University\HotelManagementAPI\HotelManagement\obj\Debug\net6.0\staticwebassets\msbuild.HotelManagement.Microsoft.AspNetCore.StaticWebAssets.props

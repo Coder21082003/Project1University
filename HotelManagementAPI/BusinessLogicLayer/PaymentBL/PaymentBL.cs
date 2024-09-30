@@ -24,6 +24,11 @@ namespace BusinessLogicLayer.PaymentBL
             _paymentDL = paymentDL;
         }
 
+        public IEnumerable<PaymentWithName> GetAllPayment()
+        {
+            return _paymentDL.GetAllPayment();
+        }
+
         #endregion
 
         #region Methods

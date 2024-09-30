@@ -15,6 +15,52 @@ namespace DataAccessLayer
     {
         #region Methods
 
+        public IEnumerable<T> GetAll()
+        {
+            string tableName = EntityUntilities.GetTableName<T>();
+
+            var query = new StringBuilder()
+                .AppendLine($"SELECT * FROM {tableName}");
+
+            using (var sqlConnection = new SqlConnection(DatabaseContext.ConnectionString))
+            {
+                // Fetch all records
+                var records = sqlConnection.Query<T>(query.ToString());
+                return records;
+            }
+        }
+        public int DeleteOneRecord(int id)
+        {
+            // Lấy tên bảng từ entity
+            string tableName = EntityUntilities.GetTableName<T>();
+
+            // Lấy khóa chính của bảng
+            var primaryKeyProp = typeof(T).GetProperties().FirstOrDefault(prop => prop.GetCustomAttributes(typeof(KeyAttribute), true).Any());
+            string tableKey = primaryKeyProp?.Name ?? "";
+
+            // Kiểm tra nếu không tìm thấy khóa chính thì không thể thực hiện xóa
+            if (string.IsNullOrEmpty(tableKey))
+            {
+                throw new InvalidOperationException("Unable to determine the primary key for the entity.");
+            }
+
+            // Xây dựng câu truy vấn DELETE
+            var query = new StringBuilder()
+                .AppendLine($"DELETE FROM {tableName}")
+                .AppendLine($"WHERE {tableKey} = @Id");
+
+            // Khởi tạo tham số cho câu truy vấn
+            var parameters = new DynamicParameters();
+            parameters.Add("@Id", id);
+
+            using (var sqlConnection = new SqlConnection(DatabaseContext.ConnectionString))
+            {
+                // Thực hiện câu truy vấn
+                int affectedRows = sqlConnection.Execute(query.ToString(), parameters);
+                return affectedRows;
+            }
+        }
+
         public int DeleteRecords(string ids)
         {
             string tableName = EntityUntilities.GetTableName<T>();

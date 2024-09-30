@@ -17,18 +17,28 @@
   },
   {
     "ContainingType": "HotelManagement.Controllers.BaseController\u00601[[CommonDataLayer.Entities.Blog, CommonDataLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-    "Method": "MultiDeleteRecords",
-    "RelativePath": "api/Blog/delete",
-    "HttpMethod": "POST",
+    "Method": "DeleteOneRecord",
+    "RelativePath": "api/Blog/{Id}",
+    "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "ids",
-        "Type": "System.Collections.Generic.List\u00601[[System.Int32, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "Name": "Id",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HotelManagement.Controllers.BaseController\u00601[[CommonDataLayer.Entities.Blog, CommonDataLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "GetAllRecords",
+    "RelativePath": "api/Blog/all",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -58,6 +68,22 @@
       {
         "Name": "record",
         "Type": "CommonDataLayer.Entities.Blog",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HotelManagement.Controllers.BaseController\u00601[[CommonDataLayer.Entities.Blog, CommonDataLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "MultiDeleteRecords",
+    "RelativePath": "api/Blog/multiDelete",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ids",
+        "Type": "System.Collections.Generic.List\u00601[[System.Int32, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": true
       }
     ],
@@ -102,18 +128,38 @@
   },
   {
     "ContainingType": "HotelManagement.Controllers.BaseController\u00601[[CommonDataLayer.Entities.Booking, CommonDataLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-    "Method": "MultiDeleteRecords",
-    "RelativePath": "api/Booking/delete",
-    "HttpMethod": "POST",
+    "Method": "DeleteOneRecord",
+    "RelativePath": "api/Booking/{Id}",
+    "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "ids",
-        "Type": "System.Collections.Generic.List\u00601[[System.Int32, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "Name": "Id",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HotelManagement.Controllers.BaseController\u00601[[CommonDataLayer.Entities.Booking, CommonDataLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "GetAllRecords",
+    "RelativePath": "api/Booking/all",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HotelManagement.Controllers.BookingController",
+    "Method": "GetAllBookings",
+    "RelativePath": "api/Booking/allBooking",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -143,6 +189,22 @@
       {
         "Name": "record",
         "Type": "CommonDataLayer.Entities.Booking",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HotelManagement.Controllers.BaseController\u00601[[CommonDataLayer.Entities.Booking, CommonDataLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "MultiDeleteRecords",
+    "RelativePath": "api/Booking/multiDelete",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ids",
+        "Type": "System.Collections.Generic.List\u00601[[System.Int32, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": true
       }
     ],
@@ -187,18 +249,28 @@
   },
   {
     "ContainingType": "HotelManagement.Controllers.BaseController\u00601[[CommonDataLayer.Entities.Coupon, CommonDataLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-    "Method": "MultiDeleteRecords",
-    "RelativePath": "api/Coupon/delete",
-    "HttpMethod": "POST",
+    "Method": "DeleteOneRecord",
+    "RelativePath": "api/Coupon/{Id}",
+    "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "ids",
-        "Type": "System.Collections.Generic.List\u00601[[System.Int32, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "Name": "Id",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HotelManagement.Controllers.BaseController\u00601[[CommonDataLayer.Entities.Coupon, CommonDataLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "GetAllRecords",
+    "RelativePath": "api/Coupon/all",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -228,6 +300,22 @@
       {
         "Name": "record",
         "Type": "CommonDataLayer.Entities.Coupon",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HotelManagement.Controllers.BaseController\u00601[[CommonDataLayer.Entities.Coupon, CommonDataLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "MultiDeleteRecords",
+    "RelativePath": "api/Coupon/multiDelete",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ids",
+        "Type": "System.Collections.Generic.List\u00601[[System.Int32, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": true
       }
     ],
@@ -272,18 +360,28 @@
   },
   {
     "ContainingType": "HotelManagement.Controllers.BaseController\u00601[[CommonDataLayer.Entities.CouponRoom, CommonDataLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-    "Method": "MultiDeleteRecords",
-    "RelativePath": "api/CouponRoom/delete",
-    "HttpMethod": "POST",
+    "Method": "DeleteOneRecord",
+    "RelativePath": "api/CouponRoom/{Id}",
+    "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "ids",
-        "Type": "System.Collections.Generic.List\u00601[[System.Int32, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "Name": "Id",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HotelManagement.Controllers.BaseController\u00601[[CommonDataLayer.Entities.CouponRoom, CommonDataLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "GetAllRecords",
+    "RelativePath": "api/CouponRoom/all",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -313,6 +411,22 @@
       {
         "Name": "record",
         "Type": "CommonDataLayer.Entities.CouponRoom",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HotelManagement.Controllers.BaseController\u00601[[CommonDataLayer.Entities.CouponRoom, CommonDataLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "MultiDeleteRecords",
+    "RelativePath": "api/CouponRoom/multiDelete",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ids",
+        "Type": "System.Collections.Generic.List\u00601[[System.Int32, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": true
       }
     ],
@@ -357,18 +471,38 @@
   },
   {
     "ContainingType": "HotelManagement.Controllers.BaseController\u00601[[CommonDataLayer.Entities.Payment, CommonDataLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-    "Method": "MultiDeleteRecords",
-    "RelativePath": "api/Payment/delete",
-    "HttpMethod": "POST",
+    "Method": "DeleteOneRecord",
+    "RelativePath": "api/Payment/{Id}",
+    "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "ids",
-        "Type": "System.Collections.Generic.List\u00601[[System.Int32, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "Name": "Id",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HotelManagement.Controllers.BaseController\u00601[[CommonDataLayer.Entities.Payment, CommonDataLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "GetAllRecords",
+    "RelativePath": "api/Payment/all",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HotelManagement.Controllers.PaymentController",
+    "Method": "GetAllBookings",
+    "RelativePath": "api/Payment/allPayment",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -398,6 +532,22 @@
       {
         "Name": "record",
         "Type": "CommonDataLayer.Entities.Payment",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HotelManagement.Controllers.BaseController\u00601[[CommonDataLayer.Entities.Payment, CommonDataLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "MultiDeleteRecords",
+    "RelativePath": "api/Payment/multiDelete",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ids",
+        "Type": "System.Collections.Generic.List\u00601[[System.Int32, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": true
       }
     ],
@@ -442,18 +592,38 @@
   },
   {
     "ContainingType": "HotelManagement.Controllers.BaseController\u00601[[CommonDataLayer.Entities.Review, CommonDataLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-    "Method": "MultiDeleteRecords",
-    "RelativePath": "api/Review/delete",
-    "HttpMethod": "POST",
+    "Method": "DeleteOneRecord",
+    "RelativePath": "api/Review/{Id}",
+    "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "ids",
-        "Type": "System.Collections.Generic.List\u00601[[System.Int32, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "Name": "Id",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HotelManagement.Controllers.BaseController\u00601[[CommonDataLayer.Entities.Review, CommonDataLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "GetAllRecords",
+    "RelativePath": "api/Review/all",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HotelManagement.Controllers.ReviewController",
+    "Method": "GetAllBookings",
+    "RelativePath": "api/Review/allReview",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -483,6 +653,22 @@
       {
         "Name": "record",
         "Type": "CommonDataLayer.Entities.Review",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HotelManagement.Controllers.BaseController\u00601[[CommonDataLayer.Entities.Review, CommonDataLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "MultiDeleteRecords",
+    "RelativePath": "api/Review/multiDelete",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ids",
+        "Type": "System.Collections.Generic.List\u00601[[System.Int32, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": true
       }
     ],
@@ -527,18 +713,28 @@
   },
   {
     "ContainingType": "HotelManagement.Controllers.BaseController\u00601[[CommonDataLayer.Entities.Room, CommonDataLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-    "Method": "MultiDeleteRecords",
-    "RelativePath": "api/Room/delete",
-    "HttpMethod": "POST",
+    "Method": "DeleteOneRecord",
+    "RelativePath": "api/Room/{Id}",
+    "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "ids",
-        "Type": "System.Collections.Generic.List\u00601[[System.Int32, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "Name": "Id",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HotelManagement.Controllers.BaseController\u00601[[CommonDataLayer.Entities.Room, CommonDataLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "GetAllRecords",
+    "RelativePath": "api/Room/all",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -568,6 +764,22 @@
       {
         "Name": "record",
         "Type": "CommonDataLayer.Entities.Room",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HotelManagement.Controllers.BaseController\u00601[[CommonDataLayer.Entities.Room, CommonDataLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "MultiDeleteRecords",
+    "RelativePath": "api/Room/multiDelete",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ids",
+        "Type": "System.Collections.Generic.List\u00601[[System.Int32, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": true
       }
     ],
@@ -612,18 +824,28 @@
   },
   {
     "ContainingType": "HotelManagement.Controllers.BaseController\u00601[[CommonDataLayer.Entities.Service, CommonDataLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-    "Method": "MultiDeleteRecords",
-    "RelativePath": "api/Service/delete",
-    "HttpMethod": "POST",
+    "Method": "DeleteOneRecord",
+    "RelativePath": "api/Service/{Id}",
+    "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "ids",
-        "Type": "System.Collections.Generic.List\u00601[[System.Int32, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "Name": "Id",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HotelManagement.Controllers.BaseController\u00601[[CommonDataLayer.Entities.Service, CommonDataLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "GetAllRecords",
+    "RelativePath": "api/Service/all",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -653,6 +875,22 @@
       {
         "Name": "record",
         "Type": "CommonDataLayer.Entities.Service",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HotelManagement.Controllers.BaseController\u00601[[CommonDataLayer.Entities.Service, CommonDataLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "MultiDeleteRecords",
+    "RelativePath": "api/Service/multiDelete",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ids",
+        "Type": "System.Collections.Generic.List\u00601[[System.Int32, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": true
       }
     ],
@@ -697,18 +935,28 @@
   },
   {
     "ContainingType": "HotelManagement.Controllers.BaseController\u00601[[CommonDataLayer.Entities.ServiceBooking, CommonDataLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-    "Method": "MultiDeleteRecords",
-    "RelativePath": "api/ServiceBooking/delete",
-    "HttpMethod": "POST",
+    "Method": "DeleteOneRecord",
+    "RelativePath": "api/ServiceBooking/{Id}",
+    "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "ids",
-        "Type": "System.Collections.Generic.List\u00601[[System.Int32, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "Name": "Id",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HotelManagement.Controllers.BaseController\u00601[[CommonDataLayer.Entities.ServiceBooking, CommonDataLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "GetAllRecords",
+    "RelativePath": "api/ServiceBooking/all",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -738,6 +986,22 @@
       {
         "Name": "record",
         "Type": "CommonDataLayer.Entities.ServiceBooking",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HotelManagement.Controllers.BaseController\u00601[[CommonDataLayer.Entities.ServiceBooking, CommonDataLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "MultiDeleteRecords",
+    "RelativePath": "api/ServiceBooking/multiDelete",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ids",
+        "Type": "System.Collections.Generic.List\u00601[[System.Int32, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": true
       }
     ],
@@ -782,18 +1046,28 @@
   },
   {
     "ContainingType": "HotelManagement.Controllers.BaseController\u00601[[CommonDataLayer.Entities.User, CommonDataLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-    "Method": "MultiDeleteRecords",
-    "RelativePath": "api/User/delete",
-    "HttpMethod": "POST",
+    "Method": "DeleteOneRecord",
+    "RelativePath": "api/User/{Id}",
+    "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "ids",
-        "Type": "System.Collections.Generic.List\u00601[[System.Int32, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "Name": "Id",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HotelManagement.Controllers.BaseController\u00601[[CommonDataLayer.Entities.User, CommonDataLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "GetAllRecords",
+    "RelativePath": "api/User/all",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -823,6 +1097,70 @@
       {
         "Name": "record",
         "Type": "CommonDataLayer.Entities.User",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HotelManagement.Controllers.UserController",
+    "Method": "Login",
+    "RelativePath": "api/User/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "loginRequest",
+        "Type": "CommonDataLayer.Entities.Login",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HotelManagement.Controllers.BaseController\u00601[[CommonDataLayer.Entities.User, CommonDataLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "MultiDeleteRecords",
+    "RelativePath": "api/User/multiDelete",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ids",
+        "Type": "System.Collections.Generic.List\u00601[[System.Int32, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HotelManagement.Controllers.UserController",
+    "Method": "Register",
+    "RelativePath": "api/User/register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "register",
+        "Type": "CommonDataLayer.Entities.Register",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HotelManagement.Controllers.UserController",
+    "Method": "SendEmailCode",
+    "RelativePath": "api/User/sendEmailCode",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "email",
+        "Type": "System.String",
         "IsRequired": true
       }
     ],

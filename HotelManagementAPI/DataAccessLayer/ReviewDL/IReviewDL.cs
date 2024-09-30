@@ -14,5 +14,6 @@ namespace DataAccessLayer.ReviewDL
 {
     public interface IReviewDL : IBaseDL<Review>
     {
+        public IEnumerable<ReviewWithName> GetAllReview();
     }
 }

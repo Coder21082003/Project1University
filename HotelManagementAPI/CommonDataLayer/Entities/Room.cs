@@ -35,8 +35,19 @@ namespace CommonDataLayer.Entities
         [Column("rating")]
         public float? rating { get; set; }
 
-        [Column("amenities")]
-        public string amenities { get; set; }
+        [Required]
+        [Column("bed_type", TypeName = "varchar(50)")]
+        [MaxLength(50)]
+        public string bed_type { get; set; } = "Single bed";
+
+        [Required]
+        [Column("size", TypeName = "varchar(50)")]
+        [MaxLength(50)]
+        public string size { get; set; } = "0m2";
+
+        [Required]
+        [Column("facilities")]
+        public string facilities { get; set; } = "None";
 
         //// Quan hệ với bảng `Bookings`, `CouponRooms` và `Reviews`
         //public ICollection<Booking> Bookings { get; set; }  // Navigation property
